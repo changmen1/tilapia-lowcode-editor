@@ -1,38 +1,57 @@
-import { useEffect, type FC } from "react";
-import { useComponetsStore } from "../../TodoList/store";
+import React, { type FC } from "react";
+import { useComponetsStore, type Component } from "../../TodoList/store";
+import { useComponentConfigStore } from "../stores/component-config";
 
 const EditArea: FC = () => {
-    const { components, addComponent, deleteComponent, updateComponentProps } = useComponetsStore();
+    const { components } = useComponetsStore();
+    const { componentConfig } = useComponentConfigStore();
 
-    useEffect(() => {
-        addComponent({
-            id: 222,
-            name: 'Container',
-            props: {},
-            children: []
-        }, 1);
-        addComponent({
-            id: 333,
-            name: 'Video',
-            props: {},
-            children: []
-        }, 222);
-        setTimeout(() => {
-            deleteComponent(333);
-        }, 3000);
-        setTimeout(() => {
-            updateComponentProps(222, {
-                title: '李瑶'
-            })
-        }, 3000);
-    }, []);
+    // useEffect(() => {
+    //     addComponent({
+    //         id: 222,
+    //         name: 'Container',
+    //         props: {},
+    //         children: []
+    //     }, 1);
+    //     addComponent({
+    //         id: 333,
+    //         name: 'Button',
+    //         props: {
+    //             text: '无敌'
+    //         },
+    //         children: []
+    //     }, 222);
+    // }, []);
+
+    function renderComponents(components: Component[]): React.ReactNode {
+        return components.map((component: Component) => {
+            const config = componentConfig?.[component.name]
+
+            if (!config?.component) {
+                return null;
+            }
+
+            return React.createElement(
+                config.component,
+                {
+                    key: component.id,
+                    id: component.id,
+                    name: component.name,
+                    ...config.defaultProps,
+                    ...component.props,
+                },
+                renderComponents(component.children || [])
+            )
+        })
+    }
     return (
-        <div>
-            <pre>
+        <div className="h-full">
+            {/* <pre>
                 {
                     JSON.stringify(components, null, 2)
                 }
-            </pre>
+            </pre> */}
+            {renderComponents(components)}
         </div>
     )
 }

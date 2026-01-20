@@ -1,10 +1,14 @@
 import type { FC } from "react";
+import { useComponetsStore } from "../../TodoList/store";
 
 const Setting: FC = () => {
+    const { components } = useComponetsStore();
     return (
-        <>
-            朱昕龙
-        </>
+        <div>
+            <pre>
+                {JSON.stringify(components, null, 2)}
+            </pre>
+        </div>
     )
 }
 

@@ -1,10 +1,22 @@
-import type { FC } from "react";
+import { useMemo, type FC } from "react";
+import { useComponentConfigStore } from "../stores/component-config";
+import { MaterialItem } from "./MaterialItem";
 
 const Material: FC = () => {
+    const { componentConfig } = useComponentConfigStore();
+
+    const components = useMemo(() => {
+        return Object.values(componentConfig);
+    }, [componentConfig])
+
     return (
-        <>
-            Material
-        </>
+        <div>
+            {
+                components.map((item, index) => {
+                    return <MaterialItem name={item.name} key={item.name + index} />
+                })
+            }
+        </div>
     )
 }
 
