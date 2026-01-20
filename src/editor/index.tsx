@@ -1,3 +1,9 @@
+/*
+ * Author: zxl
+ * 文件描述: 布局 
+ * 创建时间 2026年1月20日 14:37:48
+ */
+
 import { Allotment } from "allotment";
 import 'allotment/dist/style.css';
 import type { FC } from "react";
