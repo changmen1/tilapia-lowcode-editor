@@ -23,6 +23,7 @@ const EditArea: FC = () => {
                     key: component.id,
                     id: component.id,
                     name: component.name,
+                    styles: component.styles,
                     ...config.defaultProps,
                     ...component.props,
                 },

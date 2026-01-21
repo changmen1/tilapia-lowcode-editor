@@ -4,6 +4,7 @@
  * 创建时间 2026年1月20日 14:37:34
  */
 
+import type { CSSProperties } from 'react';
 import { create } from 'zustand';
 
 /**组件树
@@ -13,6 +14,7 @@ export interface Component {
     id: number;
     name: string;
     props: any;
+    styles?: CSSProperties;
     desc: string;
     children?: Component[];
     parentId?: number;
@@ -28,6 +30,7 @@ interface Action {
     addComponent: (component: Component, parentId?: number) => void;
     deleteComponent: (componentId: number) => void;
     updateComponentProps: (componentId: number, props: any) => void;
+    updateComponentStyles: (componentId: number, styles: CSSProperties) => void;
     setCurComponentId: (componentId: number | null) => void;
 }
 
@@ -46,6 +49,7 @@ export const useComponetsStore = create<State & Action>(
         addComponent: (component, parentId) =>
             set((state) => {
                 if (parentId) {
+                    console.log('>>>>>>>>>>>>有parentId', parentId)
                     const parentComponent = getComponentById(
                         parentId,
                         state.components
@@ -90,6 +94,17 @@ export const useComponetsStore = create<State & Action>(
                 const component = getComponentById(componentId, state.components);
                 if (component) {
                     component.props = { ...component.props, ...props };
+
+                    return { components: [...state.components] };
+                }
+
+                return { components: [...state.components] };
+            }),
+        updateComponentStyles: (componentId, styles) =>
+            set((state) => {
+                const component = getComponentById(componentId, state.components);
+                if (component) {
+                    component.styles = { ...component.styles, ...styles };
 
                     return { components: [...state.components] };
                 }

@@ -1,15 +1,9 @@
 import { Button as AntdButton } from 'antd';
-import type { ButtonType } from 'antd/es/button/buttonHelpers';
+import type { CommonComponentProps } from '../../interface';
 
-export interface ButtonProps {
-    id: number
-    type: ButtonType,
-    text: string;
-}
-
-const Button = ({ id, type, text }: ButtonProps) => {
+const Button = ({ id, type, text, styles }: CommonComponentProps) => {
     return (
-        <AntdButton data-component-id={id} type={type}>{text}</AntdButton>
+        <AntdButton data-component-id={id} type={type} style={styles}>{text}</AntdButton>
     )
 }
 
