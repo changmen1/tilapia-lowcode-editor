@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { useComponetsStore } from "../../TodoList/store";
+import { useComponetsStore } from "../stores/components";
 
 const Setting: FC = () => {
     const { components } = useComponetsStore();

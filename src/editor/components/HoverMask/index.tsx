@@ -4,7 +4,7 @@ import {
     useState,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { getComponentById, useComponetsStore } from '../../../TodoList/store';
+import { getComponentById, useComponetsStore } from '../../stores/components';
 
 // 需要计算按钮和画布区顶部的距离，就需要按钮的 boundingClientRect 还有画布区的 boundingClientRect。
 // 所以需要传入 containerClassName 和 componentId。
@@ -32,6 +32,14 @@ function HoverMask({ portalWrapperClassName, containerClassName, componentId }: 
     useEffect(() => {
         updatePosition();
     }, [componentId]);
+
+    useEffect(() => {
+        updatePosition()
+    }, [componentId]);
+
+    useEffect(() => {
+        updatePosition()
+    }, [components]);
 
     // 获取两个元素的 boundingClientRect，计算 top、left 的差值，加上 scrollTop、scrollLeft。
     // 因为 boundingClientRect 只是可视区也就是和视口的距离，要算绝对定位的位置的话要加上已滚动的距离。
@@ -114,7 +122,7 @@ function HoverMask({ portalWrapperClassName, containerClassName, componentId }: 
                         whiteSpace: 'nowrap',
                     }}
                 >
-                    {curComponent?.name}
+                    {curComponent?.desc}
                 </div>
             </div>
         </>

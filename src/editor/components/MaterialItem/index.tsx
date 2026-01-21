@@ -2,12 +2,14 @@ import { useDrag } from "react-dnd";
 
 export interface MaterialItemProps {
     name: string
+    desc: string
 }
 
 export function MaterialItem(props: MaterialItemProps) {
 
     const {
-        name
+        name,
+        desc
     } = props;
 
     const [_, drag] = useDrag({
@@ -34,6 +36,6 @@ export function MaterialItem(props: MaterialItemProps) {
             text-blue-800
         '
     >
-        {name}
+        {desc}
     </div>
 }
