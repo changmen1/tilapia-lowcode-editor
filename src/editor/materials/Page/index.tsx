@@ -7,6 +7,7 @@ function Page({ id, children }: CommonComponentProps) {
 
     return (
         <div
+            data-component-id={id}
             ref={drop as any}
             className='p-5 h-full box-border'
             style={{ border: canDrop ? '2px solid blue' : 'none' }}
