@@ -7,13 +7,14 @@ export function useMaterailDrop(accept: string[], id: number) {
     const { componentConfig } = useComponentConfigStore();
 
     const [{ canDrop }, drop] = useDrop(() => ({
+        // 指定接收的 type，这里接收 Button 和 Container 组件
         accept,
+        // drop 的时候显示下传过来的 item 数据。
         drop: (item: { type: string }, monitor) => {
             const didDrop = monitor.didDrop()
             if (didDrop) {
                 return;
             }
-
             const props = componentConfig[item.type].defaultProps;
 
             addComponent({
@@ -23,6 +24,7 @@ export function useMaterailDrop(accept: string[], id: number) {
             }, id)
         },
         collect: (monitor) => ({
+            // canDrop 的话加一个 border 的高亮。
             canDrop: monitor.canDrop(),
         }),
     }));

@@ -15,7 +15,7 @@ import Setting from "./components/Setting";
 const LowcodeEditor: FC = () => {
     return (
         <div className='h-screen flex flex-col'>
-            <div className='h-15 flex items-center border-b border-black'>
+            <div className='h-15 flex items-center border-b border-black p-2.5'>
                 <Header />
             </div>
             <Allotment>

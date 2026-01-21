@@ -11,7 +11,9 @@ export function MaterialItem(props: MaterialItemProps) {
     } = props;
 
     const [_, drag] = useDrag({
+        // 当前 drag 的元素的标识，drop 的时候根据这个来决定是否 accept。
         type: name,
+        // 传递的数据。
         item: {
             type: name
         }

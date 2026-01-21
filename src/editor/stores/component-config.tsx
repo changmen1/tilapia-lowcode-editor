@@ -16,7 +16,7 @@ interface State {
 interface Action {
     registerComponent: (name: string, componentConfig: ComponentConfig) => void
 }
-
+// compnent 名字和 Component 实例的映射 状态
 export const useComponentConfigStore = create<State & Action>((set) => ({
     componentConfig: {
         Page: {
