@@ -22,7 +22,7 @@ export function useMaterailDrop(accept: string[], id: number) {
                 desc: config.desc,
                 props: config.defaultProps,
                 styles: {
-                    background: 'green'
+                    // background: '#fff'
                 }
             }, id)
         },

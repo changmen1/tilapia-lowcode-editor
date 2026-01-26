@@ -1,6 +1,3 @@
-// import MonacoEditor, { OnMount, EditorProps } from '@monaco-editor/react'
-// import { editor } from 'monaco-editor'
-
 import Editor, { type EditorProps, type OnMount } from '@monaco-editor/react';
 
 export interface EditorFile {
@@ -12,7 +9,7 @@ export interface EditorFile {
 interface Props {
     value: string
     onChange?: EditorProps['onChange']
-    options?: options.IStandaloneEditorConstructionOptions
+    options?: any | undefined
 }
 
 export default function CssEditor(props: Props) {
